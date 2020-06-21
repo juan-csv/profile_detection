@@ -1,6 +1,7 @@
 import cv2
 import time
 import f_utils as fu
+import imutils
 
 # crear el detector de rostros frontal
 detect_frontal_face = cv2.CascadeClassifier('haarcascades/haarcascade_frontalface_alt.xml')
@@ -15,6 +16,7 @@ while True:
     star_time = time.time()
     ret, frame = cam.read()
     frame = cv2.flip(frame, 1)
+    frame = imutils.resize(frame,width=720)
     #-------------------------- Insertar preproceso -------------------------------------
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     # detectar si hay un rostro frontal o de perfil
