@@ -1,12 +1,11 @@
 import cv2
 import time
-import f_utils as fu
 import imutils
+import BoundingBox
+import f_detector
 
-# crear el detector de rostros frontal
-detect_frontal_face = cv2.CascadeClassifier('haarcascades/haarcascade_frontalface_alt.xml')
-# crear el detector de perfil rostros
-detect_perfil_face = cv2.CascadeClassifier('haarcascades/haarcascade_profileface.xml')
+# instanciar detector
+detector = f_detector.detect_face_orientation()
 
 # visualizar
 cv2.namedWindow("preview")
@@ -20,12 +19,8 @@ while True:
     #-------------------------- Insertar preproceso -------------------------------------
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     # detectar si hay un rostro frontal o de perfil
-    boxes =  fu.detect(gray,detect_frontal_face)
-    if len(boxes)!=0:
-        tag = 'frontal'
-    else:
-        boxes,tag = fu.models_profile(gray,detect_perfil_face)
-    frame = fu.print_image(frame,boxes,tag)
+    boxes,names = detector.face_orientation(gray)
+    frame = BoundingBox.bounding_box(frame,boxes,names)
     # ----------------------------------------------------------------------------
     end_time = time.time() - star_time    
     FPS = 1/end_time
