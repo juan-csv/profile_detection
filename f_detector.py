@@ -60,3 +60,4 @@ class detect_face_orientation():
         boxes = list(box_frontal)+list(box_left)+list(box_right)
         names = list(name_frontal)+list(name_left)+list(name_right)
         return boxes, names
+

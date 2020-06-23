@@ -4,3 +4,4 @@ detection profile and frontal face implementation using OpenCV haar cascades fil
 
 ![alt text](https://github.com/mevo12318/profile_detection/blob/master/results/perfil_detection.gif)
 
+![alt text](https://github.com/mevo12318/profile_detection/blob/master/results/perfil_detection.png)
